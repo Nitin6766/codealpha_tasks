@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitin Kumar Pandey | Portfolio</title>
+  <style>
+    * {
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: #fdfdfd;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #111;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #0af;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .about, .skills, .projects, .resume, .contact {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .projects .project {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      transition: box-shadow 0.3s;
+    }
+    .projects .project:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nitin Kumar Pandey</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>I am a dedicated student at UEM with a strong foundation in programming and software development. My practical experience includes developing an Inventory Management System, which honed my problem-solving and coding skills. Proficient in C and Python, I also have a good understanding of HTML and front-end development, enabling me to create functional interfaces and engaging user experiences. I am eager to apply my skills to real-world challenges through internships where I can learn from experienced professionals.</p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Leadership</li>
+      <li>Communication</li>
+      <li>Problem Solving</li>
+      <li>Python</li>
+      <li>Poetry</li>
+      <li>Front-end Development</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Inventory Management System</h3>
+      <p>Developed using C and Python, this project focused on creating an efficient solution for managing inventory in a structured and scalable way.</p>
+    </div>
+  </section>
+
+  <section id="resume" class="resume">
+    <h2>Resume</h2>
+    <p><strong>Education:</strong></p>
+    <ul>
+      <li>10th Class (78%), Bal Mandir Senior Secondary School, Kishanganj</li>
+      <li>12th Class (80%), Bal Mandir Senior Secondary School, Kishanganj (May 2022)</li>
+      <li>B.Tech, University of Engineering and Management, Kolkata</li>
+    </ul>
+    <p><strong>Courses:</strong></p>
+    <ul>
+      <li>Advanced System Security Topics – Coursera (Oct 2024 – Nov 2024)</li>
+    </ul>
+    <p><strong>Extra-curricular Activities:</strong></p>
+    <ul>
+      <li>Hackathon Participation</li>
+      <li>Open Source Contributions</li>
+      <li>Technical Blogging</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Location: Shapoorji Action Area 3, Newtown, Kolkata, India</p>
+    <p>Phone: +91 93410 83052</p>
+    <p>Email: <a href="mailto:pandeynitin0436@gmail.com">pandeynitin0436@gmail.com</a></p>
+    <p>LinkedIn: <a href="#">LinkedIn Profile</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nitin Kumar Pandey. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          section.classList.add('show');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
