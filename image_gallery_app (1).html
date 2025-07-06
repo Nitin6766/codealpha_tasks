@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f9f9f9;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+    .controls {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .controls button {
+      pointer-events: all;
+      background: #fff;
+      border: none;
+      font-size: 2rem;
+      margin: 0 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    @media (max-width: 600px) {
+      .controls button {
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gallery" id="gallery">
+    <img src="https://source.unsplash.com/random/400x300?nature,1" alt="" />
+    <img src="https://source.unsplash.com/random/400x300?nature,2" alt="" />
+    <img src="https://source.unsplash.com/random/400x300?nature,3" alt="" />
+    <img src="https://source.unsplash.com/random/400x300?nature,4" alt="" />
+    <img src="https://source.unsplash.com/random/400x300?nature,5" alt="" />
+    <img src="https://source.unsplash.com/random/400x300?nature,6" alt="" />
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="" />
+    <div class="controls">
+      <button id="prev">⟨</button>
+      <button id="next">⟩</button>
+    </div>
+  </div>
+
+  <script>
+    const gallery = document.querySelectorAll('#gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = gallery[currentIndex].src;
+      lightbox.style.display = 'flex';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % gallery.length;
+      lightboxImg.src = gallery[currentIndex].src;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + gallery.length) % gallery.length;
+      lightboxImg.src = gallery[currentIndex].src;
+    }
+
+    gallery.forEach((img, index) => {
+      img.addEventListener('click', () => openLightbox(index));
+    });
+
+    document.getElementById('next').addEventListener('click', showNext);
+    document.getElementById('prev').addEventListener('click', showPrev);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
